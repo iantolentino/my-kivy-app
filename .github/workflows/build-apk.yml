@@ -1,4 +1,4 @@
-name: Build APK
+name: Test Upload Artifact
 
 on:
   push:
@@ -6,58 +6,17 @@ on:
       - main
 
 jobs:
-  buildozer:
-    runs-on: ubuntu-22.04
+  test-upload:
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
+      - name: Create dummy file
+        run: echo "hello world" > hello.txt
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            python3-pip \
-            build-essential \
-            git \
-            unzip \
-            openjdk-8-jdk \
-            libssl-dev \
-            libffi-dev \
-            python3-dev \
-            autoconf \
-            automake \
-            libtool \
-            pkg-config \
-            zlib1g-dev \
-            libsqlite3-dev \
-            libjpeg-dev \
-            libfreetype6-dev \
-            liblcms2-dev \
-            libblas-dev \
-            liblapack-dev \
-            libatlas-base-dev \
-            gfortran \
-            cython3 \
-            curl
-
-      - name: Install Buildozer
-        run: |
-          pip install --upgrade cython==0.29.32
-          pip install buildozer
-
-      - name: Build APK
-        env:
-          JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64
-        run: |
-          buildozer android debug
-
-      - name: Upload APK artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v3.1.2
         with:
-          name: MyKivyApp-apk
-          path: bin/*.apk
+          name: test-artifact
+          path: hello.txt
