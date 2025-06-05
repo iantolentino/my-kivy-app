@@ -1,5 +1,9 @@
 name: Build APK
 
+permissions:
+  contents: read
+  packages: write
+
 on:
   push:
     branches:
