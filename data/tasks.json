@@ -1,0 +1,69 @@
+{
+    "lists": [
+        {
+            "name": "Sample List name",
+            "daily": false,
+            "expanded": false,
+            "tasks": [
+                {
+                    "name": "Sample task",
+                    "done": true,
+                    "done_time": "2025-06-05 13:50:14"
+                },
+                {
+                    "name": "Sample lsietees",
+                    "done": true
+                },
+                {
+                    "name": "sample",
+                    "done": true
+                }
+            ]
+        },
+        {
+            "name": "Test name list",
+            "daily": true,
+            "expanded": false,
+            "tasks": [
+                {
+                    "name": "test task 1",
+                    "done": true
+                },
+                {
+                    "name": "test task 2",
+                    "done": true
+                },
+                {
+                    "name": "Task 3",
+                    "done": true
+                }
+            ]
+        },
+        {
+            "name": "Sample L",
+            "daily": true,
+            "expanded": false,
+            "tasks": [
+                {
+                    "name": "sample task",
+                    "done": true
+                },
+                {
+                    "name": "cc",
+                    "done": true
+                }
+            ]
+        },
+        {
+            "name": "Last test",
+            "daily": true,
+            "expanded": true,
+            "tasks": [
+                {
+                    "name": "lst task",
+                    "done": true
+                }
+            ]
+        }
+    ]
+}

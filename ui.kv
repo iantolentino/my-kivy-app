@@ -1,0 +1,74 @@
+<ToggleCheckbox@ToggleButton>:
+    size_hint: None, None
+    size: 30, 30
+    background_normal: ''
+    background_down: ''
+    background_color: (0.714, 0.69, 0.624, 1)  # B6B09F brown
+    canvas.before:
+        Color:
+            rgba: self.background_color if self.state == 'normal' else (0.5, 0.45, 0.4, 1)
+        Ellipse:
+            pos: self.pos
+            size: self.size
+    # Optional: Add checkmark or indicator here if you want
+
+<TaskScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: 10
+        spacing: 10
+
+        BoxLayout:
+            size_hint_y: None
+            height: 40
+            spacing: 10
+
+            TextInput:
+                id: list_name
+                hint_text: "List Name"
+                foreground_color: app.text_color
+                cursor_color: app.text_color
+                background_color: (0.916, 0.894, 0.835, 1) if app.light_theme else (0.15, 0.15, 0.15, 1)
+
+            Button:
+                text: "Create List"
+                color: app.text_color
+                background_color: (0.916, 0.894, 0.835, 1) if app.light_theme else (0.3, 0.3, 0.3, 1)
+                on_release:
+                    app.task_manager.add_new_list(list_name.text, True)
+                    root.on_enter()
+
+            ToggleButton:
+                id: theme_toggle
+                text: "Light Mode"
+                size_hint_x: None
+                width: 120
+                color: app.text_color
+                background_color: (0.916, 0.894, 0.835, 1) if app.light_theme else (0.3, 0.3, 0.3, 1)
+                on_state:
+                    app.toggle_theme(self.state)
+                    self.text = "Dark Mode" if self.state == "down" else "Light Mode"
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            bar_width: 10
+            scroll_type: ['bars', 'content']
+
+            BoxLayout:
+                id: task_box
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [0, 10, 0, 0]
+                spacing: 10
+
+        Button:
+            text: "Save Today's Tasks"
+            size_hint_y: None
+            height: 50
+            color: app.text_color
+            background_color: (0.916, 0.894, 0.835, 1) if app.light_theme else (0.3, 0.3, 0.3, 1)
+            on_release:
+                app.task_manager.save_daily_tasks()
+                root.on_enter()
